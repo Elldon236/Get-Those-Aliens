@@ -10,17 +10,42 @@ public class Player : MonoBehaviour
     //optional value assingned
     [SerializeField]
     private float _speed = 3.5f;
+   [SerializeField]
+    private GameObject _LaserPrefab;
+    public Vector3 laserOffset = new Vector3(0, 0, 0);
+    [SerializeField]
+    private float _fireRate = 0.5f;
+    private float _startFire = 0.0f;
+    public GameObject projectile;
 
     void Start()
     {
-      transform.position = new Vector3(0, 0, 0);  
+      transform.position = new Vector3(0, 0, 0);
+
+     
     }
 
     // Update is called once per frame
     void Update()
     {
        movement();
+
+       if (Input.GetKeyDown(KeyCode.Space)) 
+      {
+         Instantiate(_LaserPrefab, transform.position + new Vector3(0, 0.38f, 0), Quaternion.identity);
+      }
+
+      if (Input.GetButton("Fire") && Time.time > _startFire)
+      {
+         _startFire = Time.time + _fireRate;
+         Instantiate(projectile, transform.position, transform.rotation);
+      }
+    
     }
+
+
+
+   
 
      
      void movement()
