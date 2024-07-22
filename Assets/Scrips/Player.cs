@@ -4,25 +4,24 @@ using UnityEngine;
 
 public class Player : MonoBehaviour 
 {
-    //public or private reference
-    //data type (int, float, bool, string)
-    //every variable has a name
-    //optional value assingned
     [SerializeField]
     private float _speed = 3.5f;
    [SerializeField]
     private GameObject _LaserPrefab;
     public Vector3 laserOffset = new Vector3(0, 0, 0);
     [SerializeField]
-    private float _fireRate = 0.5f;
-    private float _startFire = 0.0f;
-    public GameObject projectile;
+    private float _fireRate = 5f;
+    private float _canFire = -1f;
+    [SerializeField]
+    private int _Lives = 6;
+    [SerializeField]
+    private SpawnManager  _spawnManager;
+
 
     void Start()
     {
       transform.position = new Vector3(0, 0, 0);
-
-     
+      _spawnManager = GameObject.Find("Spawn_Manager").GetComponent<SpawnManager>();
     }
 
     // Update is called once per frame
@@ -30,25 +29,15 @@ public class Player : MonoBehaviour
     {
        movement();
 
-       if (Input.GetKeyDown(KeyCode.Space)) 
-      {
-         Instantiate(_LaserPrefab, transform.position + new Vector3(0, 0.38f, 0), Quaternion.identity);
-      }
+        if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
+        {
+            FireLaser();
+        }
 
-      if (Input.GetButton("Fire") && Time.time > _startFire)
-      {
-         _startFire = Time.time + _fireRate;
-         Instantiate(projectile, transform.position, transform.rotation);
-      }
-    
+
     }
 
-
-
-   
-
-     
-     void movement()
+   void movement()
      {
         
         float horizontalInput = Input 
@@ -57,8 +46,6 @@ public class Player : MonoBehaviour
      float verticalInput = Input 
         .GetAxis("Vertical");
         
-        //Bottom line is another way to write code. so now 3 ways
-       
         //transform.Translate(Vector3.left *
         //horizontalInput  * _speed * Time.deltaTime);
 
@@ -93,7 +80,26 @@ public class Player : MonoBehaviour
   
    }
 
-}
+    void FireLaser()
+    
+        {
+            _canFire = Time.time + _fireRate;
+            Instantiate(_LaserPrefab, transform.position + new Vector3(0, 0.38f, 0), Quaternion.identity);
+        }
+
+        public void Damage()
+        {
+            _Lives --;
+        
+
+        if (_Lives < 1)
+        {
+          _spawnManager.OnPlayerDeath();
+          Destroy(this.gameObject);
+        }
+
+        }
+    }
 
 
 
