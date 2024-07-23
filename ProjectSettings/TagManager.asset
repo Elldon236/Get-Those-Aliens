@@ -9,6 +9,7 @@ TagManager:
   - Spawn Manager
   - Spawn_Manager
   - Enemy_Container
+  - Back_Round
   layers:
   - Default
   - TransparentFX

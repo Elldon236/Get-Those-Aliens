@@ -26,7 +26,7 @@ public class SpawnManager : MonoBehaviour
       {
         while(_stopSpwaning == false) 
       {
-        Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 8, 0);
+        Vector3 posToSpawn = new Vector3(Random.Range(-5f, 5f), 7, 0);
         GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
         newEnemy.transform.parent = _Enemy_Container.transform;
          yield return new WaitForSeconds(6f);

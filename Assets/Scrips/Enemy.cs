@@ -27,11 +27,11 @@ public class Enemy : MonoBehaviour
 
         if(transform.position.y  < -5f)
         {
-            transform.position = new Vector3(Random.Range(-5f, 5f), 7, 0);
+            transform.position = new Vector3(Random.Range(-4f, 4f), 5, 0); 
         }
         
     }
-        private void OnTriggerEnter(Collider other) 
+        private void OnTriggerEnter2D(Collider2D other) 
         { 
              //Dont forget to add a tag to each gameObject.
         if (other.tag == "Player")
