@@ -503,8 +503,8 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   _speed: 3.5
-  _LaserPrefab: {fileID: 115561932426415468, guid: f0e7c1635c198b74bac238957535cefd, type: 3}
-  laserOffset: {x: 0, y: 0, z: 0}
+  _MissilePrefab: {fileID: 1795876023689305295, guid: 872f5961599c3c946a3fea6691035a56, type: 3}
+  missileOffset: {x: 0, y: 0, z: 0}
   _fireRate: 0.1
   _Lives: 6
   _spawnManager: {fileID: 0}

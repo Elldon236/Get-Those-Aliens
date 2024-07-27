@@ -44,7 +44,7 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
            //Dont forget to add a tag to each gameObject.
-        if (other.tag == "Laser")
+        if (other.tag == "Missile")
         {
             Destroy(other.gameObject);
             Destroy(this.gameObject); 

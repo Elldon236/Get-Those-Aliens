@@ -7,8 +7,8 @@ public class Player : MonoBehaviour
     [SerializeField]
     private float _speed = 3.5f;
    [SerializeField]
-    private GameObject _LaserPrefab;
-    public Vector3 laserOffset = new Vector3(0, 0, 0);
+    private GameObject _MissilePrefab;
+    public Vector3 missileOffset = new Vector3(0, 0, 0);
     [SerializeField]
     private float _fireRate = 5f;
     private float _canFire = -1f;
@@ -31,7 +31,7 @@ public class Player : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Space) && Time.time > _canFire)
         {
-            FireLaser();
+            FireMissile();
         }
 
 
@@ -80,11 +80,11 @@ public class Player : MonoBehaviour
   
    }
 
-    void FireLaser()
+    void FireMissile()
     
         {
             _canFire = Time.time + _fireRate;
-            Instantiate(_LaserPrefab, transform.position + new Vector3(0, 0.38f, 0), Quaternion.identity);
+            Instantiate(_MissilePrefab, transform.position + new Vector3(0, 0.38f, 0), Quaternion.identity);
         }
 
         public void Damage()
