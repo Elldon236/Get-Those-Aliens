@@ -1,12 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
-using System.Numerics;
-using Unity.VisualScripting;
 using UnityEngine;
-using Vector3 = UnityEngine.Vector3;
 
 
-public class Enemy : MonoBehaviour
+
+public class Enemy : MonoBehaviour 
 {
     [SerializeField]
     private float _speed = 4.0f;
@@ -23,7 +21,7 @@ public class Enemy : MonoBehaviour
     {
        
         
-            transform.Translate(Vector3.down * _speed * Time.deltaTime);
+            transform.Translate(Vector3.down * _speed * Time.deltaTime);  
 
         if(transform.position.y  < -5f)
         {
@@ -44,9 +42,9 @@ public class Enemy : MonoBehaviour
             Destroy(this.gameObject);
         }
            //Dont forget to add a tag to each gameObject.
-        if (other.tag == "Missile")
+        if (other.tag == "Missile") 
         {
-            Destroy(other.gameObject);
+            Destroy(other.gameObject); 
             Destroy(this.gameObject); 
         }
 

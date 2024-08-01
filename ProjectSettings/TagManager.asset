@@ -11,6 +11,8 @@ TagManager:
   - Enemy_Container
   - Back_Round
   - Missile
+  - Triple shot
+  - Triple shot powerup
   layers:
   - Default
   - TransparentFX

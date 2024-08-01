@@ -5,15 +5,17 @@ using UnityEngine;
 public class SpawnManager : MonoBehaviour
 {
     [SerializeField]
-    private GameObject _Enemy_Container;
+    private GameObject _enemyContainer; 
     [SerializeField]
     private GameObject _enemyPrefab;
     [SerializeField]
     private bool _stopSpwaning = false;
-    // Start is called before the first frame update
+    [SerializeField]
+    private GameObject _tripleShotPowerupPrefab; 
     void Start()
     {
-      StartCoroutine(SpawnRoutine());  
+      StartCoroutine(SpawnEnemyRoutine()); 
+      StartCoroutine(SpawnPowerupRoutine());
     }
 
     // Update is called once per frame
@@ -22,16 +24,26 @@ public class SpawnManager : MonoBehaviour
         
     }
 
-      IEnumerator SpawnRoutine()
+      IEnumerator SpawnEnemyRoutine()
       {
         while(_stopSpwaning == false) 
       {
-        Vector3 posToSpawn = new Vector3(Random.Range(-5f, 5f), 7, 0);
+        Vector3 posToSpawn = new Vector3(Random.Range(-9.5f, 9.5f), 7, 0);
         GameObject newEnemy = Instantiate(_enemyPrefab, posToSpawn, Quaternion.identity);
-        newEnemy.transform.parent = _Enemy_Container.transform;
+        newEnemy.transform.parent = _enemyContainer.transform;
          yield return new WaitForSeconds(6f);
       }
     
+    }
+
+    IEnumerator SpawnPowerupRoutine()
+    {
+        while (_stopSpwaning == false)
+        {
+            Vector3 posToSpawn = new Vector3(Random.Range(-8f, 8f), 7, 0);
+            Instantiate(_tripleShotPowerupPrefab, posToSpawn, Quaternion.identity);
+            yield return new WaitForSeconds(Random.Range(3, 8)); 
+        }
     }
 
     public void OnPlayerDeath()

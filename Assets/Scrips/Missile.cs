@@ -6,7 +6,8 @@ public class Missile : MonoBehaviour
 {
       [SerializeField]
     private float _speed = 5f;
-    public int _outOfBounds = 3;
+    [SerializeField] 
+    private int _outOfBounds = 7;
     
     void Update()
     {
@@ -14,6 +15,10 @@ public class Missile : MonoBehaviour
 
        if(transform.position.y > _outOfBounds)
        {
+         if(transform.parent != null)
+            {
+               Destroy(transform.parent.gameObject);
+            }
          Destroy(this.gameObject);
        }
     }
